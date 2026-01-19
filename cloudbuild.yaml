@@ -6,6 +6,8 @@ steps:
         "build",
         "-t",
         "${_REGION}-docker.pkg.dev/${PROJECT_ID}/${_REPOSITORY}/${_SERVICE_NAME}:${COMMIT_SHA}",
+        "--build-arg",
+        "VITE_GOOGLE_CLIENT_ID=548865347589-4aab5gaquk1oqpifan7k0jp94to7fffm.apps.googleusercontent.com",
         ".",
       ]
 
@@ -35,7 +37,7 @@ steps:
       - "${_INSTANCE_CONNECTION_NAME}"
       - "--set-env-vars"
       - "NODE_ENV=production"
-      - "--update-secrets=JWT_SECRET=JWT_SECRET:latest,DB_PASS=DB_PASS:latest"
+      - "--update-secrets=JWT_SECRET=JWT_SECRET:latest,DB_PASS=DB_PASS:latest,GOOGLE_CLIENT_SECRET=GOOGLE_CLIENT_SECRET:latest"
 
 # Define the images to be pushed to Artifact Registry
 images:
@@ -44,10 +46,10 @@ images:
 # Define user-configurable substitutions
 substitutions:
   _PROJECT_ID: "vitacross"
-  _REGION: "us-west2"
+  _REGION: "us-west1"
   _SERVICE_NAME: "inbound-medical-app"
   _REPOSITORY: "inbound-medical-repo"
-  _INSTANCE_CONNECTION_NAME: "vitacross:us-west2:vitacross-database"
+  _INSTANCE_CONNECTION_NAME: "vitacross:us-west1:vitacross"
   _DB_USER: "app_user"
   _DB_NAME: "inbound_medical"
 

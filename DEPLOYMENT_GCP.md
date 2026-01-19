@@ -15,8 +15,8 @@ Create a PostgreSQL instance if you haven't already.
 ```bash
 # Set your project ID
 export PROJECT_ID="Vitacross"
-export REGION="us-west2"
-export DB_INSTANCE="vitacross-database"
+export REGION="us-west1"
+export DB_INSTANCE="vitacross"
 export DB_NAME="inbound_medical"
 export DB_USER="admin"
 export DB_PASS="Vitacross260105" # Choose a strong password
