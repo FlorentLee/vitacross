@@ -18,13 +18,7 @@ steps:
       ]
 
   # 3. Deploy the new image to Google Cloud Run, using secrets from Secret Manager
-  # 4. Read the DB_PASS secret into a file
-  - name: "gcr.io/cloud-builders/gcloud"
-    entrypoint: "bash"
-    args: ["-c", "gcloud secrets versions access latest --secret=DB_PASS > /workspace/db_pass.txt"]
-    secretEnv: ["DB_PASS"]
-
-  # 5. Deploy the new image to Google Cloud Run, using secrets from Secret Manager
+  # 3. Deploy the new image to Google Cloud Run, using secrets from Secret Manager
   - name: "gcr.io/google.com/cloudsdktool/cloud-sdk"
     entrypoint: gcloud
     args:
@@ -41,8 +35,20 @@ steps:
       - "--add-cloudsql-instances"
       - "${_INSTANCE_CONNECTION_NAME}"
       - "--set-env-vars"
-      - "NODE_ENV=production,DATABASE_URL=postgresql://${_DB_USER}:$(cat /workspace/db_pass.txt)@/${_DB_NAME}?host=/cloudsql/${_INSTANCE_CONNECTION_NAME}"
+      - "NODE_ENV=production"
       - "--update-secrets=JWT_SECRET=JWT_SECRET:latest"
+
+  # 4. Update the service with the DB_PASS secret
+  - name: "gcr.io/google.com/cloudsdktool/cloud-sdk"
+    entrypoint: gcloud
+    args:
+      - "run"
+      - "services"
+      - "update"
+      - "${_SERVICE_NAME}"
+      - "--region"
+      - "${_REGION}"
+      - "--update-secrets=DB_PASS=DB_PASS:latest"
 
 # Define the images to be pushed to Artifact Registry
 images:
