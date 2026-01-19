@@ -1,0 +1,51 @@
+# This file specifies files that are *NOT* uploaded to Google Cloud when
+# deploying a service.
+#
+# For more information, please see:
+# https://cloud.google.com/sdk/gcloud/reference/topic/gcloudignore
+
+# Node.js dependencies
+node_modules/
+
+# Git repository files
+.git/
+.gitignore
+.gitattributes
+
+# Docker files
+.dockerignore
+Dockerfile
+Dockerfile.prod
+
+# Local environment files
+.env
+.env.local
+
+# IDE and editor directories
+.vscode/
+.idea/
+.claude/
+
+# Operating system files
+.DS_Store
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Drizzle migrations
+drizzle/
+
+# Pnpm lockfile - it's better to use the one from the repo
+pnpm-lock.yaml
+
+# Downloaded files
+download/
+
+# Test files
+*.test.ts
+*.test.tsx
+
+# SSHPass files
+sshpass-1.10/
