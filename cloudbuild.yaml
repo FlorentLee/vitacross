@@ -36,7 +36,7 @@ steps:
       - "--add-cloudsql-instances"
       - "${_INSTANCE_CONNECTION_NAME}"
       - "--set-env-vars"
-      - "NODE_ENV=production"
+      - "NODE_ENV=production,DB_USER=${_DB_USER},DB_NAME=${_DB_NAME},INSTANCE_CONNECTION_NAME=${_INSTANCE_CONNECTION_NAME}"
       - "--update-secrets=JWT_SECRET=JWT_SECRET:latest,DB_PASS=DB_PASS:latest,GOOGLE_CLIENT_SECRET=GOOGLE_CLIENT_SECRET:latest"
 
 # Define the images to be pushed to Artifact Registry

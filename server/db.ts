@@ -5,21 +5,40 @@ import { InsertUser, User, users, InsertPatientConsultation, InsertMedicalFile, 
 import { ENV } from './_core/env';
 import bcrypt from 'bcrypt';
 
-let _db: ReturnType<typeof drizzle> | null = null;
+let _db: any = null;
 
 // Lazily create the drizzle instance so local tooling can run without a DB.
 export async function getDb() {
-  if (!_db && process.env.DATABASE_URL) {
-    try {
-      const client = new Client({
-        connectionString: process.env.DATABASE_URL,
-      });
-      await client.connect();
-      _db = drizzle(client);
-      console.log("[Database] Connected to PostgreSQL");
-    } catch (error) {
-      console.warn("[Database] Failed to connect:", error);
-      _db = null;
+  if (!_db) {
+    let connectionString = process.env.DATABASE_URL;
+
+    if (!connectionString && process.env.DB_PASS) {
+      const user = process.env.DB_USER || 'app_user';
+      const pass = process.env.DB_PASS;
+      const name = process.env.DB_NAME || 'inbound_medical';
+      const instance = process.env.INSTANCE_CONNECTION_NAME;
+
+      if (instance) {
+        // Cloud Run connection using Unix socket
+        connectionString = `postgres://${user}:${pass}@/${name}?host=/cloudsql/${instance}`;
+      } else {
+        // Fallback or other connection types
+        console.warn("[Database] No DATABASE_URL and no INSTANCE_CONNECTION_NAME provided");
+      }
+    }
+
+    if (connectionString) {
+      try {
+        const client = new Client({
+          connectionString: connectionString,
+        });
+        await client.connect();
+        _db = drizzle(client);
+        console.log("[Database] Connected to PostgreSQL");
+      } catch (error) {
+        console.warn("[Database] Failed to connect:", error);
+        _db = null;
+      }
     }
   }
   return _db;
