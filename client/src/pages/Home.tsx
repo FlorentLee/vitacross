@@ -70,9 +70,9 @@ export default function Home() {
           >
             <CarouselContent className="h-full ml-0">
               {[
-                "images/hero-bg.jpg",
-                "images/hospital-exterior.jpg",
-                "images/healing-hero.jpg"
+                "images/hospital-scene.png",
+                "images/facility-1.jpg",
+                "images/healing-yoga.png"
               ].map((src, index) => (
                 <CarouselItem key={index} className="pl-0 h-full">
                   <img

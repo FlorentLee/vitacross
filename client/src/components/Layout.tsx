@@ -82,7 +82,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <div className="container flex items-center justify-between">
           <Link href="/">
             <div className="flex items-center gap-2 cursor-pointer">
-              <HeartPulse className="w-10 h-10 text-primary" />
+              <img src="/images/logo.png" alt="VitaCross Logo" className="w-12 h-12 object-contain" />
               <div className="flex flex-col">
                 <span className="font-heading font-bold text-xl leading-none text-primary">VitaCross</span>
                 <span className="text-xs text-muted-foreground tracking-wider">Borderless Care</span>
@@ -220,7 +220,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <div className="container grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="space-y-4">
             <div className="flex items-center gap-2">
-              <HeartPulse className="w-8 h-8 text-primary" />
+              <img src="/images/logo.png" alt="VitaCross Logo" className="w-10 h-10 object-contain" />
               <span className="font-heading font-bold text-xl text-white">VitaCross</span>
             </div>
             <p className="text-sm text-slate-400 leading-relaxed">

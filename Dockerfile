@@ -32,6 +32,10 @@ RUN npm install -g pnpm
 # Set environment for production build
 ENV NODE_ENV=production
 
+# Accept Google Client ID as a build argument and set it as an ENV
+ARG VITE_GOOGLE_CLIENT_ID
+ENV VITE_GOOGLE_CLIENT_ID=$VITE_GOOGLE_CLIENT_ID
+
 # Build the project
 RUN pnpm run build
 

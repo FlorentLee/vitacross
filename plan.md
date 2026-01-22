@@ -65,7 +65,7 @@ images:
   - "${_REGION}-docker.pkg.dev/${PROJECT_ID}/${_REPOSITORY}/${_SERVICE_NAME}:${COMMIT_SHA}"
 
 substitutions:
-  _REGION: "us-west2"
+  _REGION: "us-west1"
   _SERVICE_NAME: "inbound-medical-app"
   _REPOSITORY: "inbound-medical-repo"
   _INSTANCE_CONNECTION_NAME: "your-project-id:your-region:your-instance-name"

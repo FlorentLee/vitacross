@@ -25,7 +25,7 @@ export default function OnlineConsultation() {
   return (
     <Layout>
       {/* Hero Section */}
-      <section className="relative py-20 bg-cover bg-center bg-no-repeat" style={{backgroundImage: 'url(/images/consultation-header-bg.jpg)'}}>
+      <section className="relative py-20 bg-cover bg-center bg-no-repeat" style={{ backgroundImage: 'url(/images/consultation-hero.jpg)' }}>
         <div className="absolute inset-0 bg-black/40"></div>
         <div className="container relative z-10">
           <div className="max-w-3xl">
@@ -39,8 +39,8 @@ export default function OnlineConsultation() {
               {t("oc_hero_desc")}
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button 
-                size="lg" 
+              <Button
+                size="lg"
                 className="text-base px-8 rounded-full shadow-lg shadow-primary/25"
                 onClick={handleBookConsultation}
               >
@@ -229,7 +229,7 @@ export default function OnlineConsultation() {
                     </div>
                   ))}
                 </div>
-                <Button 
+                <Button
                   className="w-full rounded-full py-6 text-lg"
                   onClick={handleBookConsultation}
                 >
@@ -251,9 +251,9 @@ export default function OnlineConsultation() {
           <p className="text-primary-foreground/80 text-xl max-w-2xl mx-auto">
             {t("oc_cta_desc")}
           </p>
-          <Button 
-            size="lg" 
-            variant="secondary" 
+          <Button
+            size="lg"
+            variant="secondary"
             className="text-primary font-bold px-10 py-6 text-lg shadow-xl"
             onClick={handleBookConsultation}
           >
